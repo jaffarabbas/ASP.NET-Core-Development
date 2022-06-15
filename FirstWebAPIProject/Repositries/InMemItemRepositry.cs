@@ -1,8 +1,9 @@
 using FirstWebAPIProject.Entities;
+using FirstWebAPIProject.Repositries;
 
 namespace FirstWebAPIProject.repostries
 {
-    public class InMemItemRepositry{
+    public class InMemItemRepositry : IItemRepositry{
         private readonly List<Item> _items = new List<Item>(){
             new Item{
                 Id = Guid.NewGuid(),
@@ -30,6 +31,17 @@ namespace FirstWebAPIProject.repostries
 
         public Item GetItem(Guid id){
             return _items.Where(item => item.Id == id).SingleOrDefault();
+        }
+
+        public void CreateItem(Item item)
+        {
+            _items.Add(item);
+        }
+
+        public void UpdateItem(Item item)
+        {
+           var index = _items.FindIndex(items => items.Id == item.Id);
+           _items[index] = item;
         }
     }
 }
