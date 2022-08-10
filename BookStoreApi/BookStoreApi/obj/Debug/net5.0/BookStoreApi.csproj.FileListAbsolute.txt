@@ -67,3 +67,9 @@ J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microso
 J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+J:\Github\DotNet-Core-Web-API\BookStoreApi\BookStoreApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
