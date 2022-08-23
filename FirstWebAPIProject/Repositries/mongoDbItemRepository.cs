@@ -1,23 +1,38 @@
+using FirstWebAPIProject.Entities;
+using MongoDB.Driver;
+
 namespace FirstWebAPIProject.Repositries
 {
     public class MongoDbItemRepository : IItemRepositry
     {
-        public IEnumerable<Item> GetItems()
+        private const string databaseName = "catalog";
+        private const string collections = "items";
+       
+        private readonly IMongoCollection<Item> itemCollection;
+        public MongoDbItemRepository(IMongoClient mongoClient)
         {
-           
-        }
-
-        public Item GetItem(Guid id)
-        {
-           
+            IMongoDatabase database = mongoClient.GetDatabase(databaseName);
+            itemCollection = database.GetCollection<Item>(collections);
         }
 
         public void CreateItem(Item item)
         {
+            throw new NotImplementedException();
+        }
+
+        public Item GetItem(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Item> GetItems()
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateItem(Item item)
         {
+            throw new NotImplementedException();
         }
     }
 }
