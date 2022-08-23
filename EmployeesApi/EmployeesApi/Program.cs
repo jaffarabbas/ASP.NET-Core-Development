@@ -1,3 +1,5 @@
+using BookStoreApi.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +9,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BookStoreDB")));
+builder.services.AddControllers(
+    options =>
+    {
+        options.SuppressAsyncSuffixInActionNames = false;
+    }).AddNewtonsoftJson();
+builder.services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStoreApi", Version = "v1" });
+});
+//api work
+builder.services.AddTransient<IBookRepository, BookRepository>();
+services.AddTransient<IAccountRepository, AccountRepository>();
+services.AddAutoMapper(typeof(Startup));
+services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<BookStoreContext>()
+    .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
