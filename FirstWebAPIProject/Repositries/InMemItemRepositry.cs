@@ -24,11 +24,11 @@ namespace FirstWebAPIProject.repostries
                 CreatedDate = DateTimeOffset.UtcNow
             }
         };
-
+        
         public IEnumerable<Item> GetItems(){
             return _items;
         }
-
+        
         public Item GetItem(Guid id){
             return _items.Where(item => item.Id == id).SingleOrDefault();
         }
