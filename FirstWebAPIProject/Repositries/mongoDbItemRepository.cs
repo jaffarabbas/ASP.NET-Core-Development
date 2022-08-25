@@ -18,24 +18,32 @@ namespace FirstWebAPIProject.Repositries
             itemCollection = database.GetCollection<Item>(collections);
         }
 
-        public void CreateItem(Item item)
+        public async Task CreateItemAsync(Item item)
         {
-            itemCollection.InsertOne(item);
+            await itemCollection.InsertOneAsync(item);
         }
 
-        public Item GetItem(Guid id)
+
+        public async Task<Item> GetItemAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            return await itemCollection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public IEnumerable<Item> GetItems()
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
-            return itemCollection.Find(new BsonDocument()).ToList();
+            return await itemCollection.FindAsync(new BsonDocument()).Result.ToListAsync();
         }
 
-        public void UpdateItem(Item item)
+        public async Task UpdateItemAsync(Item item)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(existingItem => existingItem.Id, item.Id);
+            await itemCollection.ReplaceOneAsync(filter, item);
+        }
+        public async Task DeleteItemAsync(Item item)
+        {
+            var filter = filterBuilder.Eq(existingItem => existingItem.Id, item.Id);
+            await itemCollection.DeleteOneAsync(filter);
         }
     }
 }
