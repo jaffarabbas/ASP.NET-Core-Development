@@ -41,3 +41,6 @@ J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\runtimes\win\n
 J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
 J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\HealthChecks.MongoDb.dll
+J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+J:\Github\DotNet-Core-Web-API\FirstWebAPIProject\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
