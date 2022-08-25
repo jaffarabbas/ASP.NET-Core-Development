@@ -2,9 +2,10 @@ using FirstWebAPIProject.Entities;
 
 namespace FirstWebAPIProject.Repositries{
     public interface IItemRepositry{
-        Item GetItem(Guid id);
-        IEnumerable<Item> GetItems();
-        void CreateItem(Item item);
-        void UpdateItem(Item item);
+        public Task<Item> GetItemAsync(Guid id);
+        public Task<IEnumerable<Item>> GetItemsAsync();
+        public Task CreateItemAsync(Item item);
+        public Task UpdateItemAsync(Item item);
+        public Task DeleteItemAsync(Item item);
     }
 }
