@@ -2,7 +2,6 @@ using FirstWebAPIProject.Dtos;
 using FirstWebAPIProject.Entities;
 using FirstWebAPIProject.Extension;
 using FirstWebAPIProject.Repositries;
-using FirstWebAPIProject.repostries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FirstWebAPIProject.Controllers
@@ -17,14 +16,14 @@ namespace FirstWebAPIProject.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ItemDto> GetItems(){
-            var item = _itemRepository.GetItems().Select(item => item.ExItemDto());
+        public async Task<IEnumerable<ItemDto>> GetItemsAsync(){
+            var item = (await _itemRepository.GetItemsAsync()).Select(item => item.ExItemDto());
             return item;
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ItemDto> GetItems(Guid id){
-            var item = _itemRepository.GetItem(id);
+        public async Task<ActionResult<ItemDto>> GetItemsAsync(Guid id){
+            var item = await _itemRepository.GetItemAsync(id);
             if(item is null){
                 return NotFound();
             }
@@ -33,28 +32,28 @@ namespace FirstWebAPIProject.Controllers
         
 
         [HttpPost]
-        public ActionResult<ItemDto> CreateItem(CreateItemsDto createItemsDto){
+        public async Task<ActionResult<ItemDto>> CreateItemAsync(CreateItemsDto createItemsDto){
             Item item = new(){
                 Id = Guid.NewGuid(),
                 Name = createItemsDto.Name,
                 Price = createItemsDto.Price,
                 CreatedDate = DateTimeOffset.UtcNow,
             };
-            _itemRepository.CreateItem(item);
-            return CreatedAtAction(nameof(GetItems),new {id = item.Id}, item.ExItemDto());
+            await _itemRepository.CreateItemAsync(item);
+            return CreatedAtAction(nameof(GetItemsAsync),new {id = item.Id}, item.ExItemDto());
         }
 
         [HttpPut("{id}")]
-         public ActionResult UpdateItem(Guid id, UpdateItemsDto updateItemDto) {
-            var existingItem = _itemRepository.GetItem(id);
+         public async Task<ActionResult> UpdateItemAsync(Guid id, UpdateItemsDto updateItemDto) {
+            var existingItem = await _itemRepository.GetItemAsync(id);
             if(existingItem is null){
-                return NotFound();
+                return NotFound(); 
             }
             Item updatedItem = existingItem with {
                 Name = updateItemDto.Name,
                 Price = updateItemDto.Price
             };
-            _itemRepository.UpdateItem(updatedItem);
+            await _itemRepository.UpdateItemAsync(updatedItem);
             return NoContent();
          }
     }
