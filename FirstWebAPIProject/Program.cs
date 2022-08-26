@@ -23,7 +23,11 @@ BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String))
 builder.Services.AddSingleton<IMongoClient>(serviceProvider => {
     return new MongoClient(mongoDbSettings.ConnectionString);
 });
-builder.Services.AddHealthChecks().AddMongoDb(mongoDbSettings.ConnectionString, name: "mongodb", timeout: TimeSpan.FromSeconds(5));
+builder.Services.AddHealthChecks().AddMongoDb(mongoDbSettings.ConnectionString,
+                                                name: "mongodb",
+                                                timeout: TimeSpan.FromSeconds(5),
+                                                tags: new[] { "ready" }
+                                               );
 builder.Services.AddSingleton<IItemRepositry, MongoDbItemRepository>();
 var app = builder.Build();
 
