@@ -11,5 +11,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.11"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.11"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.11"/>
+    <PackageReference Include="AutoMapper" Version="12.0.0"/>
   </ItemGroup>
 </Project>
