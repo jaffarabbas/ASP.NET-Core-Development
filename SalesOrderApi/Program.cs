@@ -1,5 +1,6 @@
 using SalesOrderApi.Models;
 using Microsoft.EntityFrameworkCore;
+using SalesOrderApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<Sales_DBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("connection"));
 });
+
+//implementing interfaces
+builder.Services.AddTransient<ICustomerRepository,CustomerRespository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
