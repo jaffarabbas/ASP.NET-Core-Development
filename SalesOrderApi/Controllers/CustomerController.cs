@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SalesOrderApi.Models;
 using Microsoft.EntityFrameworkCore;
+using SalesOrderApi.Repository;
 
 namespace SalesOrderApi.Controllers
 {
@@ -8,16 +9,16 @@ namespace SalesOrderApi.Controllers
     [Route("[controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly Sales_DBContext dBContext;
-        public CustomerController(Sales_DBContext context)
+        private readonly ICustomerRepository dBContext;
+        public CustomerController(ICustomerRepository context)
         {
             dBContext = context;
         }
 
         [HttpGet("GetAll")]
-        public async Task<List<TblCustomer>> GetAll()
+        public async Task<List<CustomerEntity>> GetAll()
         {
-            return await dBContext.TblCustomers.ToListAsync();
+            return await dBContext.GetAll();
         }
     }
 }
