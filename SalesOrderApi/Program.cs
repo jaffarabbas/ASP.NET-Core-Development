@@ -1,6 +1,7 @@
 using SalesOrderApi.Models;
 using Microsoft.EntityFrameworkCore;
 using SalesOrderApi.Repository;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,10 @@ builder.Services.AddDbContext<Sales_DBContext>(options => {
 
 //implementing interfaces
 builder.Services.AddTransient<ICustomerRepository,CustomerRespository>();
+builder.Services.AddTransient<IInvoiceRepository,InvoiceRepository>();
+var autoMapper = new MapperConfiguration(item=>item.AddProfile(new MappingProfile()));
+IMapper mapper = autoMapper.CreateMapper();
+builder.Services.AddSingleton(mapper);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
