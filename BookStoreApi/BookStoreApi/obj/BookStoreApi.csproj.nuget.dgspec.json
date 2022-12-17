@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "J:\\Github\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj": {}
+    "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj": {}
   },
   "projects": {
-    "J:\\Github\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj": {
+    "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\Github\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
+        "projectUniqueName": "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
         "projectName": "BookStoreApi",
-        "projectPath": "J:\\Github\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
-        "packagesPath": "C:\\Users\\gamap\\.nuget\\packages\\",
-        "outputPath": "J:\\Github\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\obj\\",
+        "projectPath": "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
+        "packagesPath": "C:\\Users\\DARKLORD\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "J:\\Programs\\Microsoft\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\gamap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DARKLORD\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -91,7 +91,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -103,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
