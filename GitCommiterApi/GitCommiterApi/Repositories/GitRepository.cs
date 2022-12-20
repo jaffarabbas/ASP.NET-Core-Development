@@ -26,9 +26,10 @@ namespace GitCommiterApi.Repositories
             }
         }
 
-        public Task<List<string>> staggingfileList()
+        public async Task<List<string>> staggingfileList(string path)
         {
-            throw new NotImplementedException();
+            var data = this._gitCommiter.StageChanges(path);
+            return data;
         }
     }
 }
