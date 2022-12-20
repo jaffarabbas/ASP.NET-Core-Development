@@ -2,7 +2,7 @@
 {
     public interface IGitRepository
     {
-        Task<List<string>> staggingfileList();
+        Task<List<string>> staggingfileList(string path);
         Task<Dictionary<int, string>> gitRepositoryList();
     }
 }
