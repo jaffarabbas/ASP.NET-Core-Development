@@ -1,4 +1,5 @@
 using GitCommiterApi.Repositories;
+using GitCommiterMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddTransient<IGitRepository, GitRepository>();
+builder.Services.AddScoped<Commiter>();
+//builder.Services.AddTransient<ITest, Test>();
 
 var app = builder.Build();
 
