@@ -1,9 +1,11 @@
 ﻿using JWT_Authentication.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWT_Authentication.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
