@@ -2868,11 +2868,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
+      "projectUniqueName": "J:\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
       "projectName": "BookStoreApi",
-      "projectPath": "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
+      "projectPath": "J:\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\BookStoreApi.csproj",
       "packagesPath": "C:\\Users\\DARKLORD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DARKLORD\\Documents\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\obj\\",
+      "outputPath": "J:\\GitHub\\DotNet-Core-Web-API\\BookStoreApi\\BookStoreApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

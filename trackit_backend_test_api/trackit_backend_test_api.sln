@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "trackit_backend_test_api", "trackit_backend_test_api\trackit_backend_test_api.csproj", "{BB527676-2DDC-4E42-9294-392440995281}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB527676-2DDC-4E42-9294-392440995281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB527676-2DDC-4E42-9294-392440995281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB527676-2DDC-4E42-9294-392440995281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB527676-2DDC-4E42-9294-392440995281}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5215FE0-198C-419B-9FD9-5A24F44F0BC8}
+	EndGlobalSection
+EndGlobal

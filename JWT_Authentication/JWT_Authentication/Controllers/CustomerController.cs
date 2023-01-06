@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JWT_Authentication.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
+    [Authorize(Roles = "admin")]
     public class CustomerController : ControllerBase
     {
         private readonly JwtAuthentictionContext _context;
