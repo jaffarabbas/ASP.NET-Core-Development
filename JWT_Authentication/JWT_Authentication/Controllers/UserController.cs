@@ -56,7 +56,7 @@ namespace JWT_Authentication.Controllers
                     new Claim[]
                     {
                             new Claim(ClaimTypes.Name, _user.Userid),
-                            //roles
+                            //roles4
                             new Claim(ClaimTypes.Role,_user.Role)
                     }
                 ),
@@ -69,7 +69,7 @@ namespace JWT_Authentication.Controllers
             string finaltoken = tokenHandler.WriteToken(token);
             response.JWTToken = finaltoken;
             response.RefreshToken = _refreshTokenGenerator.GenerateToken(user.username);
-            return new ApiHitResponse<TokenResponse>(response,"Success");
+            return JsonContent(response);
         }
 
         [Route("Refresh")]
