@@ -1,4 +1,5 @@
 ﻿using DbLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,16 @@ namespace DbLayer.Repositories
 
         public List<Customer> GetAll()
         {
-            return context.Customers.ToList();
+            return context.Customers.Include("CidNavigation").ToList();
         }
 
         public Customer? GetAllById(int id)
         {
             return context.Customers.FirstOrDefault(m => m.Id == id);
+        }
+        public List<Country> GetCountries()
+        {
+            return context.Countries.ToList();
         }
 
         public bool Remove(int id)
