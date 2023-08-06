@@ -2,24 +2,211 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 <div class="row">
     <div class="col-md-12">
-        <a href="#" class="btn btn-primary">Add new</a>
+        <a href="#" onclick="Create()" class="btn btn-primary">Add new</a>
         @Html.Partial("~/Views/Shared/_customer.cshtml")
     </div>
     <div class="col-lg-12">
     <br />
-        <table class="table table-bordered">
+        <table id="tableCustomer" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Address</th>
+                    <th>Country</th>
+                    <th></th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+
+            </tbody>
         </table>
     </div>
 </div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+<script>
+    var js = jQuery.noConflict(true);
+
+    js(document).ready(function(){
+        loadCustomer();
+        loadCountries();
+    });
+    function Create() {
+        ClearAll();
+        $('#btnModal').trigger('click');
+    }
+
+    function ClearAll(){
+        $('#idTxt').val('');
+        $('#nameTxt').val('');
+        $('#emailTxt').val('');
+        $('#passwordTxt').val('');
+        $('#addressTxt').val('');
+        $('#countryTxt').val('');
+    }
+
+    function loadCustomer() {
+        var customerData = [];
+        $.ajax({
+            type: 'post',
+            url: 'Customer/GetAll',
+            data: {},
+            async: false,
+            success(data) {
+                if (data != null) {
+                    $.each(data, function (key, value) {
+                        var editBtn = "<a href='#' onclick='Edit(this)' class='btn btn-primary'>Edit</a>";
+                        var deleteBtn = "<a href='#' onclick='Delete(this)' class='btn btn-danger'>Delete</a>";
+                        var hidden = "<input type='hidden' id='hdId' value='"+value.id+"'/>";
+                        var action = hidden + editBtn + " | " + deleteBtn;
+                        customerData.push([value.id, value.name, value.email, value.password, value.address, value.cidNavigation.cname, action]);
+                    });
+                }
+            },
+            error(err) {
+
+            }
+        });
+        js("#tableCustomer").dataTable({
+            destroy:true,
+            data:customerData
+        })
+    }
+
+    function Edit(element){
+        var id = $(element).closest('tr').find('#hdId').val(); 
+        Create();
+        $.ajax({
+            type: 'post',
+            url: 'Customer/Get',
+            data: {id:id},
+            async: false,
+            success(data) {
+                if (data != null) {
+                    $('#idTxt').val(data.id);
+                    $('#nameTxt').val(data.name);
+                    $('#emailTxt').val(data.email);
+                    $('#passwordTxt').val(data.password);
+                    $('#addressTxt').val(data.address);
+                    $('#countryTxt').val(data.cid);
+                }
+            },
+            error(err) {
+
+            }
+        });
+    }
+
+    function Delete(element) {
+        if(confirm("Do you Want to Delete this Record")){
+            var id = $(element).closest('tr').find('#hdId').val();
+            $.ajax({
+                type: 'post',
+                url: 'Customer/Remove',
+                data: { id: id },
+                async: false,
+                success(data) {
+                    if (data != null) {
+                        alert('Data Deleted Successfully');
+                        loadCustomer();
+                    }
+                },
+                error(err) {
+
+                }
+            });
+        }
+    }
+
+    function loadCountries(){
+        $('#countryTxt option').remove();
+        $('#countryTxt').append("<option value=''>Select Country</option>")
+        $.ajax({
+            type:'post',
+            url: 'Customer/GetAllCountries',
+            data:{},
+            success(data){
+                if(data != null){
+                    $.each(data,function(key , value){
+                        $("#countryTxt").append("<option value='" + value.cid + "'>" + value.cname + "</option>");
+                    });
+                }
+            },
+            error(err){
+
+            }
+        });
+    }
+
+    function Save(){
+        var id = $('#idTxt').val();
+        var name = $('#nameTxt').val();
+        var email = $('#emailTxt').val();
+        var password = $('#passwordTxt').val();
+        var address = $('#addressTxt').val();
+        var country = $('#countryTxt').val();
+        var isValid = true;
+        if(name == ''){
+            $('#nameTxt').css('border-color','red')
+            isValid = false;
+        } else if (email == '') {
+            $('#emailTxt').css('border-color', 'red')
+            isValid = false;
+        } else if (password == '') {
+            $('#passwordTxt').css('border-color', 'red')
+            isValid = false;
+        } else if (name == '') {
+            $('#nameTxt').css('border-color', 'red')
+            isValid = false;
+        } else if (address == '') {
+            $('#addressTxt').css('border-color', 'red')
+            isValid = false;
+        } else if (country == '') {
+            $('#countryTxt').css('border-color', 'red')
+            isValid = false;
+        }else{
+            if(isValid){
+                var customerData = new Object();
+                customerData.id = id;
+                customerData.name = name;
+                customerData.email = email;
+                customerData.password = password;
+                customerData.address = address;
+                customerData.cid = country;
+                $.ajax({
+                    type: 'post',
+                    url: 'Customer/Add',
+                    data: customerData,
+                    success(data) {
+                        if (data == 1) {
+                            alert('Data Added Successfully')
+                            loadCustomer();
+                            closeModal();
+                        }else if(data  == 2){
+                            alert('Data Updated Successfully')
+                            loadCustomer();
+                            closeModal();
+                        }else{
+                            alert('Failed')
+                        }
+                    },
+                    error(err) {
+
+                    }
+                });
+            }
+        }
+    }
+
+    function closeModal(){
+        $("#close").trigger('click');
+    }
+</script>
