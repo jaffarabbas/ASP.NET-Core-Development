@@ -22,6 +22,12 @@ namespace CRUDWithAjax.Controllers
             return Json(customers);
         }
 
+        public JsonResult GetAllCountries()
+        {
+            List<Country> countries = new CustomerDb(context).GetCountries();
+            return Json(countries);
+        }
+
         public JsonResult Get(int id)
         {
             Customer customer = new CustomerDb(context).GetAllById(id);
