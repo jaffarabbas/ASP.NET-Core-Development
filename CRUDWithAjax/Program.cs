@@ -8,7 +8,7 @@ var provider = builder.Services.BuildServiceProvider();
 var config = provider.GetRequiredService<IConfiguration>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<DbMvcContext>(item => item.UseSqlServer(config.GetConnectionString("dbString")));
+builder.Services.AddDbContext<DbMvcContext>(item => item.UseSqlServer(config.GetConnectionString("conn")));
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
