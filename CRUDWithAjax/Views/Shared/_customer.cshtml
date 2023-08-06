@@ -1,23 +1,73 @@
 ﻿<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" id="btnModal" style="display:none;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customerModal">
     Launch demo modal
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="customerModalLabel">Add/Edit</h5>
+                <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Id</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <input disabled="disabled" type="text" id="idTxt" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <input type="text" id="nameTxt"class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <input type="text" id="emailTxt"class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Password</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <input type="password" id="passwordTxt" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Address</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <textarea rows="3" id="addressTxt" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Country</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <select id="countryTxt" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" onclick="Save(); return false" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
+
