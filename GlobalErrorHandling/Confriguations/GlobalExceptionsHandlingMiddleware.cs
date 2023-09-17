@@ -1,5 +1,6 @@
 ﻿using GlobalErrorHandling.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using KeyNotFoundException = GlobalErrorHandling.Exceptions.KeyNotFoundException;
@@ -11,7 +12,6 @@ namespace GlobalErrorHandling.Confriguations
     public class GlobalExceptionsHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-
         public GlobalExceptionsHandlingMiddleware(RequestDelegate request)
         {
             _next = request;
@@ -29,48 +29,42 @@ namespace GlobalErrorHandling.Confriguations
             }
         }
 
+        /// <summary>
+        /// Custom Error Handler
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            HttpStatusCode status;
-            var stackTrace = string.Empty;
-            string message = "";
-            var exceptionType = ex.GetType();
+            var status = HttpStatusCode.InternalServerError;
+            var message = ex.Message;
+            var stackTrace = ex.StackTrace;
 
-            if(exceptionType == typeof(NotFoundException)){
-                message = ex.Message;
-                status = HttpStatusCode.NotFound;
-                stackTrace = ex.StackTrace;
-            }else if(exceptionType == typeof(KeyNotFoundException)) 
+            switch (ex)
             {
-                message = ex.Message;
-                status = HttpStatusCode.NotFound;
-                stackTrace = ex.StackTrace;
-            }else if(exceptionType == typeof(BadReuestException))
-            {
-                message = ex.Message;
-                status = HttpStatusCode.BadRequest;
-                stackTrace = ex.StackTrace;
-            }else if(exceptionType == typeof(NotImplementedException))
-            {
-                message = ex.Message;
-                status = HttpStatusCode.NotImplemented;
-                stackTrace = ex.StackTrace;
-            }else if(exceptionType == typeof(UnAuthorizedAccessException))
-            {
-                message = ex.Message;
-                status = HttpStatusCode.Unauthorized;
-                stackTrace = ex.StackTrace;
+                case NotFoundException:
+                    status = HttpStatusCode.NotFound;
+                    break;
+                case KeyNotFoundException:
+                    status = HttpStatusCode.NotFound;
+                    break;
+                case BadReuestException:
+                    status = HttpStatusCode.BadRequest;
+                    break;
+                case NotImplementedException:
+                    status = HttpStatusCode.NotImplemented;
+                    break;
+                case UnAuthorizedAccessException:
+                    status = HttpStatusCode.Unauthorized;
+                    break;
             }
-            else
-            {
-                message = ex.Message;
-                status = HttpStatusCode.InternalServerError;
-                stackTrace = ex.StackTrace;
-            }
+
             var exceptionResult = JsonSerializer.Serialize(new { error = message, stackTrace });
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)status;
             return context.Response.WriteAsync(exceptionResult);
         }
+
     }
 }
