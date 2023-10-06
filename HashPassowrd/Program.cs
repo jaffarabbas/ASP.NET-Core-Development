@@ -14,7 +14,6 @@ public class Program
         }
         return salt;
     }
-
     public static byte[] HashPassword(string password, byte[] salt,string type)
     {
         if(type == "sha256")
