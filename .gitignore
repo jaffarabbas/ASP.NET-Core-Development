@@ -129,3 +129,10 @@ _[Ss]cripts
 
 
 Properties
+
+
+*.mdf
+*.ldf
+
+*.vsidx
+*.v2

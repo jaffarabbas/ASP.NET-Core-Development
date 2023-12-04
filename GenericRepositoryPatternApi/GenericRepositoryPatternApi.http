@@ -1,0 +1,6 @@
+@GenericRepositoryPatternApi_HostAddress = http://localhost:5038
+
+GET {{GenericRepositoryPatternApi_HostAddress}}/products/
+Accept: application/json
+
+###
