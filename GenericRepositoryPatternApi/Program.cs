@@ -32,6 +32,12 @@ builder.Services.AddHealthChecks()
     .AddCheck<ApiHealthCheck>(nameof(ApiHealthCheck))
     .AddDbContextCheck<DbJewelsiteContext>();
 
+
+builder.Services.AddHealthChecksUI(options =>
+{
+    options.AddHealthCheckEndpoint("HealthCheck API", "/healthchecks");
+}).AddInMemoryStorage();
+
 #endregion
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -41,10 +47,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHealthChecksUI(options =>
-{
-    options.AddHealthCheckEndpoint("HealthCheck API", "/healthchecks");
-}).AddInMemoryStorage();
 
 var app = builder.Build();
 
@@ -56,6 +58,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+#region Configure health check ui
+
 app.MapHealthChecks("/health", new HealthCheckOptions()
 {
     ResultStatusCodes =
@@ -66,14 +71,6 @@ app.MapHealthChecks("/health", new HealthCheckOptions()
     }
 });
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-#region Configure health check ui
-
 app.MapHealthChecks("/healthchecks", new()
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
@@ -82,5 +79,11 @@ app.MapHealthChecks("/healthchecks", new()
 app.MapHealthChecksUI(options => options.UIPath = "/healthCheckDashboard");
 
 #endregion
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
