@@ -1,6 +1,7 @@
 using GenericRepositoryPatternApi.HealthCheck;
 using GenericRepositoryPatternApi.Models;
 using GenericRepositoryPatternApi.Repository;
+using GenericRepositoryPatternApi.Repository.ProductRepository;
 using GenericRepositoryPatternApi.Repository.UOW;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -42,6 +43,7 @@ builder.Services.AddHealthChecksUI(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

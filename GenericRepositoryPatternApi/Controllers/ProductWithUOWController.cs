@@ -1,4 +1,5 @@
 ﻿using GenericRepositoryPatternApi.Models;
+using GenericRepositoryPatternApi.Repository.ProductRepository;
 using GenericRepositoryPatternApi.Repository.UOW;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,14 +20,17 @@ namespace GenericRepositoryPatternApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var data = await _unitOfWork.GetRepository<Product>().Get();
+            var repository = _unitOfWork.GetRepository<IProductRepository, Product>();
+            var data = await repository.Get();
             return Ok(data);
         }
 
         [HttpGet("GetByName")]
         public async Task<IActionResult> GetByName(string name)
         {
-            var data = await _unitOfWork.ProductRepository.GetProductNameAsync(name);
+            //var data = await _unitOfWork.ProductRepository.GetProductNameAsync(name);
+            var repository = _unitOfWork.GetRepository<IProductRepository, Product>();
+            var data = await repository.GetProductNameAsync(name);
             return Ok(data);
         }
 
@@ -46,7 +50,8 @@ namespace GenericRepositoryPatternApi.Controllers
                     Image = product.Image,
                     CreatedOn = DateTime.Now
                 };
-                var isproduct = await _unitOfWork.GetRepository<Product>().Post(productData);
+                var repository = _unitOfWork.GetRepository<IProductRepository, Product>();
+                var isproduct = repository.Post(productData);
                 await _unitOfWork.SaveChangesAsync();
                 await _unitOfWork.CommitAcync();
                 return Ok(isproduct);

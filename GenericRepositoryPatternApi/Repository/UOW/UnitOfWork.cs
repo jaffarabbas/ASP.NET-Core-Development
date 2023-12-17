@@ -5,21 +5,18 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace GenericRepositoryPatternApi.Repository.UOW
 {
-    public partial class UnitOfWork
-    {
-        public IProductRepository ProductRepository { get; }
-    }
     public partial class UnitOfWork : IUnitOfWork
     {
         private readonly DbJewelsiteContext _dbJewelsiteContext;
+        private readonly IServiceProvider _serviceProvider;
         private IDbContextTransaction _transaction;
         private Dictionary<Type, object> _repositories;
         private bool disposed = false;
 
-        public UnitOfWork(DbJewelsiteContext dbJewelsiteContext) { 
+        public UnitOfWork(DbJewelsiteContext dbJewelsiteContext,IServiceProvider serviceProvider) { 
             _dbJewelsiteContext = dbJewelsiteContext;
+            _serviceProvider = serviceProvider;
             _repositories = new Dictionary<Type, object>();
-            ProductRepository = new ProductRepository.ProductRepository(dbJewelsiteContext);
         }
         public async Task BeginTransaction()
         {
@@ -82,6 +79,24 @@ namespace GenericRepositoryPatternApi.Repository.UOW
         public async Task<int> SaveChangesAsync()
         {
             return await _dbJewelsiteContext.SaveChangesAsync();
+        }
+
+        TRepository IUnitOfWork.GetRepository<TRepository, TEntity>()
+        {
+            var respository = _serviceProvider.GetService<TRepository>();
+            if(respository == null)
+            {
+                throw new InvalidOperationException($"Failed to get the repository of type {typeof(TRepository)}");
+            }
+            if(respository is IRepository<TEntity> genericRepository)
+            {
+                genericRepository.SetDBCOntext(_dbJewelsiteContext);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Repository of type {typeof(TRepository)}");
+            }
+            return respository;
         }
     }
 }

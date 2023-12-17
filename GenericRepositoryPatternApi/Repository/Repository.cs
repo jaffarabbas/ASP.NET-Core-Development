@@ -8,7 +8,7 @@ namespace GenericRepositoryPatternApi.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbSet<T> _dbSet;
-        private readonly DbJewelsiteContext _dbJewelsiteContext;
+        private DbJewelsiteContext _dbJewelsiteContext;
         public Repository(DbJewelsiteContext dbJewelsiteContext) {
             _dbSet = dbJewelsiteContext.Set<T>();   
             _dbJewelsiteContext = dbJewelsiteContext;
@@ -35,6 +35,11 @@ namespace GenericRepositoryPatternApi.Repository
             await _dbSet.AddAsync(entity);
             await _dbJewelsiteContext.SaveChangesAsync();
             return entity;
+        }
+
+        public void SetDBCOntext(DbJewelsiteContext context)
+        {
+            _dbJewelsiteContext = context;
         }
 
         public async Task<int> Update(T entity)

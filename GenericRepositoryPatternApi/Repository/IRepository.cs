@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GenericRepositoryPatternApi.Models;
+using System.Collections.Generic;
 
 namespace GenericRepositoryPatternApi.Repository
 {
@@ -9,5 +10,6 @@ namespace GenericRepositoryPatternApi.Repository
         Task<T> Post(T entity);
         Task<int> Update(T entity);
         Task<int> Delete(T entity);
+        void SetDBCOntext(DbJewelsiteContext context);
     }
 }
