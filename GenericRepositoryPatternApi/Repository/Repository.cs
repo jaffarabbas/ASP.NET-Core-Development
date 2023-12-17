@@ -7,7 +7,7 @@ namespace GenericRepositoryPatternApi.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
         private readonly DbJewelsiteContext _dbJewelsiteContext;
         public Repository(DbJewelsiteContext dbJewelsiteContext) {
             _dbSet = dbJewelsiteContext.Set<T>();   

@@ -1,18 +1,25 @@
 ﻿
 using GenericRepositoryPatternApi.Models;
+using GenericRepositoryPatternApi.Repository.ProductRepository;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace GenericRepositoryPatternApi.Repository.UOW
 {
-    public class UnitOfWork : IUnitOfWork
+    public partial class UnitOfWork
+    {
+        public IProductRepository ProductRepository { get; }
+    }
+    public partial class UnitOfWork : IUnitOfWork
     {
         private readonly DbJewelsiteContext _dbJewelsiteContext;
         private IDbContextTransaction _transaction;
         private Dictionary<Type, object> _repositories;
         private bool disposed = false;
+
         public UnitOfWork(DbJewelsiteContext dbJewelsiteContext) { 
             _dbJewelsiteContext = dbJewelsiteContext;
             _repositories = new Dictionary<Type, object>();
+            ProductRepository = new ProductRepository.ProductRepository(dbJewelsiteContext);
         }
         public async Task BeginTransaction()
         {

@@ -1,6 +1,12 @@
-﻿namespace GenericRepositoryPatternApi.Repository.UOW
+﻿using GenericRepositoryPatternApi.Repository.ProductRepository;
+
+namespace GenericRepositoryPatternApi.Repository.UOW
 {
-    public interface IUnitOfWork : IDisposable
+    public partial interface IUnitOfWork
+    {
+        public IProductRepository ProductRepository { get; }
+    }
+    public partial interface IUnitOfWork : IDisposable
     {
         IRepository<T> GetRepository<T>() where T : class;
         Task<int> SaveChangesAsync();

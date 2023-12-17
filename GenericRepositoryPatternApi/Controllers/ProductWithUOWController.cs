@@ -23,6 +23,13 @@ namespace GenericRepositoryPatternApi.Controllers
             return Ok(data);
         }
 
+        [HttpGet("GetByName")]
+        public async Task<IActionResult> GetByName(string name)
+        {
+            var data = await _unitOfWork.ProductRepository.GetProductNameAsync(name);
+            return Ok(data);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(Product product)
         {
