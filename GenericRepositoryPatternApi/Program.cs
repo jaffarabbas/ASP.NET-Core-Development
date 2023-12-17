@@ -1,5 +1,6 @@
 using GenericRepositoryPatternApi.Models;
 using GenericRepositoryPatternApi.Repository;
+using GenericRepositoryPatternApi.Repository.UOW;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,12 +21,21 @@ builder.Services.AddDbContext<DbJewelsiteContext>(options =>
 #endregion 
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
