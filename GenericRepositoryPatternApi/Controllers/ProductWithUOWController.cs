@@ -40,21 +40,35 @@ namespace GenericRepositoryPatternApi.Controllers
             try
             {
                 using var transaction = _unitOfWork.BeginTransaction();
-                var productData = new Product()
+                List<Models.Product> list = new List<Product> 
                 {
-                    Name = product.Name,
-                    Cid = product.Cid,
-                    Price = product.Price,
-                    Quantity = product.Quantity,
-                    Description = product.Description,
-                    Image = product.Image,
-                    CreatedOn = DateTime.Now
+                    new Product()
+                    {
+                        Name = product.Name,
+                        Cid = product.Cid,
+                        Price = product.Price,
+                        Quantity = product.Quantity,
+                        Description = product.Description,
+                        Image = product.Image,
+                        CreatedOn = DateTime.Now
+                    },
+                    new Product()
+                    {
+                        Name = "asdasd",
+                        Cid = 1,
+                        Price = 0,
+                        Quantity = 1,
+                        Description = "asdasd",
+                        Image = "sadasd",
+                        CreatedOn = DateTime.Now
+                    },
                 };
-                var repository = _unitOfWork.GetRepository<IProductRepository, Product>();
-                var isproduct = repository.Post(productData);
+               //var repository = _unitOfWork._ProductRepository.AddProduct(list);
+                var repository = _unitOfWork.GetRepository<IProductRepository, Models.Product>();
+                await repository.AddProduct(list);
                 await _unitOfWork.SaveChangesAsync();
                 await _unitOfWork.CommitAcync();
-                return Ok(isproduct);
+                return Ok(list);
             }catch(Exception ex) {
                 await _unitOfWork.RollBackAsync();
                 throw;

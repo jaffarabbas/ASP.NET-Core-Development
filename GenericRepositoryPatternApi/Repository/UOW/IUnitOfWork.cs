@@ -2,6 +2,9 @@
 
 namespace GenericRepositoryPatternApi.Repository.UOW
 {
+    public partial interface IUnitOfWork {
+        public IProductRepository _ProductRepository { get; }
+    }
     public partial interface IUnitOfWork : IDisposable
     {
         IRepository<T> GetRepository<T>() where T : class;
