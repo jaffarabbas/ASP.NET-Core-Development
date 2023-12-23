@@ -50,20 +50,20 @@ namespace GenericRepositoryPatternApi.Controllers
                         Quantity = product.Quantity,
                         Description = product.Description,
                         Image = product.Image,
-                        CreatedOn = DateTime.Now
+                        CreatedOn = DateTime.Now,
                     },
                     new Product()
                     {
                         Name = "asdasd",
                         Cid = 1,
-                        Price = 0,
+                        Price = 1,
                         Quantity = 1,
                         Description = "asdasd",
                         Image = "sadasd",
                         CreatedOn = DateTime.Now
                     },
                 };
-               //var repository = _unitOfWork._ProductRepository.AddProduct(list);
+                //var repository = _unitOfWork._ProductRepository.AddProduct(list);
                 var repository = _unitOfWork.GetRepository<IProductRepository, Models.Product>();
                 await repository.AddProduct(list);
                 await _unitOfWork.SaveChangesAsync();

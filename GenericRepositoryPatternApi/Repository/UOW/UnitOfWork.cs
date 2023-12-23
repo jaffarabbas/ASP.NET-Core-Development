@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace GenericRepositoryPatternApi.Repository.UOW
 {
-    public partial class UnitOfWork
-    {
-        public IProductRepository _ProductRepository { get; }
-    }
+    //public partial class UnitOfWork
+    //{
+    //    public IProductRepository _ProductRepository { get; }
+    //}
     public partial class UnitOfWork : IUnitOfWork
     {
         private readonly DbJewelsiteContext _dbJewelsiteContext;
@@ -21,7 +21,7 @@ namespace GenericRepositoryPatternApi.Repository.UOW
             _dbJewelsiteContext = dbJewelsiteContext;
             _serviceProvider = serviceProvider;
             _repositories = new Dictionary<Type, object>();
-            _ProductRepository = new ProductRepository.ProductRepository(_dbJewelsiteContext);
+            //_ProductRepository = new ProductRepository.ProductRepository(_dbJewelsiteContext);
         }
         public async Task BeginTransaction()
         {

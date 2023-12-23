@@ -20,7 +20,7 @@ namespace GenericRepositoryPatternApi.Repository.ProductRepository
         public async Task<int> AddProduct(IEnumerable<Models.Product> products)
         {
             //_dbSet.AddRange(products);
-            _dbJewelsiteContext.AddRange(products);
+            _dbJewelsiteContext.Products.AddRange(products);
             return 1;
         }
     }
