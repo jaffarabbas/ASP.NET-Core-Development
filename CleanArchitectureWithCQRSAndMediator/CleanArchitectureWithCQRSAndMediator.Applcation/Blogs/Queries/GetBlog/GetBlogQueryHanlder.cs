@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitectureWithCQRSAndMediator.Applcation.Blogs.Queries.GetBlog
 {
-    internal class GetBlogHanlder
+    internal class GetBlogQueryHanlder
     {
     }
 }
