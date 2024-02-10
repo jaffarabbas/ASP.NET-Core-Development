@@ -1,0 +1,6 @@
+@IdentityManagerApi_HostAddress = http://localhost:5294
+
+GET {{IdentityManagerApi_HostAddress}}/
+Accept: application/json
+
+###
