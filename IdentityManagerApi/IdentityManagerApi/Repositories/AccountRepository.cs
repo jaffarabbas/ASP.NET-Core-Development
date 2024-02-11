@@ -79,8 +79,8 @@ namespace IdentityManagerApi.Repositories
                 new Claim(ClaimTypes.Role, user.Role)
             };
             var token = new JwtSecurityToken(
-                issuer: configuration["JwtSetting:Issuer"],
-                audience: configuration["JwtSetting:Audience"],
+                issuer: configuration["JwtSetting:ValidIssuer"],
+                audience: configuration["JwtSetting:VaildAudience"],
                 claims: userClaims,
                 expires: DateTime.Now.AddDays(1),
                 signingCredentials: credentials

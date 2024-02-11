@@ -16,7 +16,7 @@ namespace IdentityManagerApi.Controllers
         }
 
         [HttpGet("User")]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User,Admin")]
         public IActionResult GetUser()
         {
             return Ok("Is User");
