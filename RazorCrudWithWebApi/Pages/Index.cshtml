@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<select asp-for="SelectedClassId" class="form-control">
+    <option value="">-- Select Class --</option>
+    @foreach (var item in Model.Classes)
+    {
+        <option value="@item.Id">@item.ClassName</option>
+    }
+</select>
+
+<select id="classDropdown" class="form-control">
+    <option value="">-- Select Class --</option>
+</select>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'http://localhost:5141/api/AccountType/GetAccountTypes',
+            type: 'GET',
+            success: function(data) {
+                var dropdown = $('#classDropdown');
+                dropdown.empty();
+                dropdown.append('<option value="">-- Select Class --</option>');
+                $.each(data["Data"], function(index, item) {
+                    dropdown.append($('<option></option>').val(item.id).text(item.Name));
+                });
+            },
+            error: function() {
+                alert('Error loading classes from the API.');
+            }
+        });
+    });
+</script>
+
