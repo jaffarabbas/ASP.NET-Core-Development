@@ -6,17 +6,16 @@ namespace IdentityManagerApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "User,Admin")]
     public class RolesController : ControllerBase
     {
         [HttpGet("Admin")]
-        [Authorize(Roles = "Admin")]
         public IActionResult GetAdmin()
         {
             return Ok("Is Admin");
         }
 
         [HttpGet("User")]
-        [Authorize(Roles = "User,Admin")]
         public IActionResult GetUser()
         {
             return Ok("Is User");
