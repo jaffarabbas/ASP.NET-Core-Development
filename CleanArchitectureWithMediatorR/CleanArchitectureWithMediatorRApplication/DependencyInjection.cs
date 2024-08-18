@@ -11,6 +11,7 @@ namespace CleanArchitectureWithMediatorRApplication
     {
         public static IServiceCollection AddApplicationDI(this IServiceCollection service)
         {
+            service.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(DependencyInjection).Assembly));
             return service;
         }
     }
