@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CleanArchitectureWithMediatorRInfrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class dbinit : Migration
+    public partial class dbInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -17,7 +17,7 @@ namespace CleanArchitectureWithMediatorRInfrastructure
         {
             service.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer("Server=.;Database=TestDB;Trusted_Connection=True;TrustServerCertificate=true;Integrated Security=True;MultipleActiveResultSets=True");
+                options.UseSqlServer("Server=mssql-server;Database=TestDB;User Id=sa;Password=JAFFARempire@1399;Trusted_Connection=False;TrustServerCertificate=true;MultipleActiveResultSets=True\r\n");
             });
             service.AddScoped<IEmployeeRepository, EmployeeRepository>();
             return service;

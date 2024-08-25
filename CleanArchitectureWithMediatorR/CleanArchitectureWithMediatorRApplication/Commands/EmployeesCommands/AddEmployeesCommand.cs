@@ -2,7 +2,7 @@
 using CleanArchitectureWithMediatorRCore.Interfaces;
 using MediatR;
 
-namespace CleanArchitectureWithMediatorRApplication.Commands
+namespace CleanArchitectureWithMediatorRApplication.Commands.EmployeesCommands
 {
     public record AddEmployeeCommand(EmployeeEntity Employee) : IRequest<EmployeeEntity>;
     public class AddEmployeesCommands(IEmployeeRepository employeeRepository)

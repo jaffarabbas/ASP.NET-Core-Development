@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitectureWithMediatorRApplication.Queries
+namespace CleanArchitectureWithMediatorRApplication.Queries.EmployeesQueries
 {
     public record GetAllEmployeesQuery() : IRequest<IEnumerable<EmployeeEntity>>;
     public class GetAllEmployeesQueryHandler(IEmployeeRepository employeeRepository)

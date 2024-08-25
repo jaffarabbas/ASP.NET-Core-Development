@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAppDI();
 
+builder.WebHost.UseUrls("http://+:5004");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

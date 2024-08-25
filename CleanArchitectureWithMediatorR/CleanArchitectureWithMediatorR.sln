@@ -5,11 +5,11 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureWithMediatorR", "CleanArchitectureWithMediatorR\CleanArchitectureWithMediatorR.csproj", "{E5D19FBD-8FA2-4655-A201-472BEB2E9E17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureWithMediatorRCore", "CleanArchitectureWithMediatorRCore\CleanArchitectureWithMediatorRCore.csproj", "{F384B045-5C57-420C-BA36-DC7EA431605A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureWithMediatorRCore", "CleanArchitectureWithMediatorRCore\CleanArchitectureWithMediatorRCore.csproj", "{F384B045-5C57-420C-BA36-DC7EA431605A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureWithMediatorRApplication", "CleanArchitectureWithMediatorRApplication\CleanArchitectureWithMediatorRApplication.csproj", "{E8D9F684-7F0F-4AAF-AEC3-1DB403F6B873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureWithMediatorRApplication", "CleanArchitectureWithMediatorRApplication\CleanArchitectureWithMediatorRApplication.csproj", "{E8D9F684-7F0F-4AAF-AEC3-1DB403F6B873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureWithMediatorRInfrastructure", "CleanArchitectureWithMediatorRInfrastructure\CleanArchitectureWithMediatorRInfrastructure.csproj", "{50C8FBB7-FFE0-495A-94ED-AB35A7BB0E74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitectureWithMediatorRInfrastructure", "CleanArchitectureWithMediatorRInfrastructure\CleanArchitectureWithMediatorRInfrastructure.csproj", "{50C8FBB7-FFE0-495A-94ED-AB35A7BB0E74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
