@@ -1,0 +1,37 @@
+services:
+  mssql-server2:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-server2
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SA_PASSWORD}
+    volumes:
+      - mssql-api_sqlserver_data:/var/opt/mssql
+    networks:
+      - darklord
+    tty: true
+    stdin_open: true
+
+  mediatr1:
+    image: jaffarabbas/clean-app
+    container_name: mediatr1
+    ports:
+      - "5004:5004"
+    networks:
+      - darklord
+    tty: true
+    stdin_open: true
+    depends_on:
+      - mssql-server2
+
+networks:
+  darklord:
+    external: true
+    name: darklord
+
+volumes:
+  mssql-api_sqlserver_data:
+    external: true
+    name: mssql-api_sqlserver_data
