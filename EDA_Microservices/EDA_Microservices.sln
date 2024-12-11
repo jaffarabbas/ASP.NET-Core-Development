@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDA_Customer", "EDA_Customer\EDA_Customer.csproj", "{46A0D224-3A3C-43B2-B09F-65A028D9D073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDA_Inventory", "EDA_Inventory\EDA_Inventory.csproj", "{74B82D6A-F726-4881-BB55-253721756BAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46A0D224-3A3C-43B2-B09F-65A028D9D073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A0D224-3A3C-43B2-B09F-65A028D9D073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A0D224-3A3C-43B2-B09F-65A028D9D073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A0D224-3A3C-43B2-B09F-65A028D9D073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B82D6A-F726-4881-BB55-253721756BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B82D6A-F726-4881-BB55-253721756BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B82D6A-F726-4881-BB55-253721756BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B82D6A-F726-4881-BB55-253721756BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
