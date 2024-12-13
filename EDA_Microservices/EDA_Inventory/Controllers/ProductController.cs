@@ -1,4 +1,5 @@
 using System.Text.Json;
+using EDA_Inventory.RabbitMQ;
 using EDA_Product.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace EDA_Product.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProductController(ProductDBContext dbContext) : ControllerBase
+public class ProductController(ProductDBContext dbContext,IRabbitMQUtils rabbitMqUtils) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
@@ -41,6 +42,7 @@ public class ProductController(ProductDBContext dbContext) : ControllerBase
             product.Name,
             product.Quantity
         });
+        await rabbitMqUtils.PublishMessageQueue("inventory.product",_product);
         return CreatedAtAction("GetProducts", new { product.id }, product);
     }
 }

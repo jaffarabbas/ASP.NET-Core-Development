@@ -1,4 +1,5 @@
 using EDA_Customer.Data;
+using EDA_Customer.RabbitMQ;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<CustomerDBContext>(options => options.UseSqlite(@"Data Source=customer.db"));
+builder.Services.AddSingleton<IRabbitMQUtils, RabbitMQUtils>().AddHostedService<RabbitMQService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

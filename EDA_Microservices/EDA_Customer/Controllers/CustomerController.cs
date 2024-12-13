@@ -19,6 +19,13 @@ public class CustomerController : ControllerBase
     {
         return await _context.Customers.ToListAsync();
     }
+    
+    [HttpGet]
+    [Route("Product")]
+    public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+    {
+        return await _context.Products.ToListAsync();
+    }
 
     [HttpPost]
     public async Task CreateCustomer(Customer customer)
