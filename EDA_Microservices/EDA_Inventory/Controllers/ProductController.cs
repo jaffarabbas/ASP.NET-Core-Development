@@ -38,7 +38,7 @@ public class ProductController(ProductDBContext dbContext,IRabbitMQUtils rabbitM
         var _product = JsonSerializer.Serialize(new
         {
             product.id,
-            product.ProdcutID,
+            product.ProductID,
             product.Name,
             product.Quantity
         });

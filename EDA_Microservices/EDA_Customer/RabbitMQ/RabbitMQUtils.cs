@@ -15,7 +15,8 @@ public class RabbitMQUtils(IServiceScopeFactory serviceScopeFactory) : IRabbitMQ
         {
             HostName = "localhost",
             UserName = "guest",
-            Password = "guest"
+            Password = "guest",
+            DispatchConsumersAsync = true
         };
         var connection = factory.CreateConnection();
         using var channel = connection.CreateModel();
@@ -39,35 +40,43 @@ public class RabbitMQUtils(IServiceScopeFactory serviceScopeFactory) : IRabbitMQ
     private async Task ParseInventoryProductMessage(string message, BasicDeliverEventArgs ea,
         CancellationToken cancellationToken)
     {
-        using var scope = serviceScopeFactory.CreateScope();
-        var customerDBContext = scope.ServiceProvider.GetRequiredService<CustomerDBContext>();
-
-        var data = JObject.Parse(message);
-        var type = ea.RoutingKey;
-
-        if (type == "inventory.product")
+        try
         {
-            var guidValue = Guid.Parse(data["ProductID"].Value<string>());
-            var product =
-                await customerDBContext.Products.FirstOrDefaultAsync(a => a.ProdcutID == guidValue, cancellationToken);
+            using var scope = serviceScopeFactory.CreateScope();
+            var customerDBContext = scope.ServiceProvider.GetRequiredService<CustomerDBContext>();
 
-            if (product != null)
+            var data = JObject.Parse(message);
+            var type = ea.RoutingKey;
+
+            if (type == "inventory.product")
             {
-                product.Name = data["ProductName"].Value<string>();
-                product.Quantity = data["Quantity"].Value<int>();
-            }
-            else
-            {
-                await customerDBContext.Products.AddAsync(new Product()
+                var guidValue = Guid.Parse(data["ProductID"].Value<string>());
+                var product =
+                    await customerDBContext.Products.FirstOrDefaultAsync(a => a.ProductID == guidValue,
+                        cancellationToken);
+
+                if (product != null)
                 {
-                    id = data["ID"].Value<int>(),
-                    ProdcutID = guidValue,
-                    Name = data["Name"].Value<string>(),
-                    Quantity = data["Quantity"].Value<int>()
-                }, cancellationToken);
-                await customerDBContext.SaveChangesAsync(cancellationToken);
-                await Task.Delay(new Random().Next(1,3) * 1000, cancellationToken);
+                    product.Name = data["ProductName"].Value<string>();
+                    product.Quantity = data["Quantity"].Value<int>();
+                }
+                else
+                {
+                    await customerDBContext.Products.AddAsync(new Product()
+                    {
+                        id = data["id"].Value<int>(),
+                        ProductID = guidValue,
+                        Name = data["Name"].Value<string>(),
+                        Quantity = data["Quantity"].Value<int>()
+                    }, cancellationToken);
+                    await customerDBContext.SaveChangesAsync(cancellationToken);
+                    await Task.Delay(new Random().Next(1, 3) * 1000, cancellationToken);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
     }
 }
